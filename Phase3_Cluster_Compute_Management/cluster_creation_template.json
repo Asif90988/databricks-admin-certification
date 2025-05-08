@@ -1,0 +1,59 @@
+{
+  "cluster_name": "example-cluster",
+  "spark_version": "11.3.x-scala2.12",
+  "node_type_id": "i3.xlarge",
+  "driver_node_type_id": "i3.xlarge",
+  "spark_conf": {
+    "spark.databricks.delta.preview.enabled": "true",
+    "spark.databricks.io.cache.enabled": "true",
+    "spark.sql.adaptive.enabled": "true",
+    "spark.databricks.cluster.profile": "singleNode"
+  },
+  "aws_attributes": {
+    "first_on_demand": 1,
+    "availability": "SPOT_WITH_FALLBACK",
+    "zone_id": "us-west-2a",
+    "spot_bid_price_percent": 100,
+    "ebs_volume_type": "GENERAL_PURPOSE_SSD",
+    "ebs_volume_count": 1,
+    "ebs_volume_size": 100
+  },
+  "num_workers": 0,
+  "autoscale": {
+    "min_workers": 2,
+    "max_workers": 8
+  },
+  "autotermination_minutes": 120,
+  "enable_elastic_disk": true,
+  "cluster_source": "UI",
+  "init_scripts": [
+    {
+      "dbfs": {
+        "destination": "dbfs:/databricks/init_scripts/example-init.sh"
+      }
+    }
+  ],
+  "custom_tags": {
+    "Department": "Data Science",
+    "Project": "Example Project",
+    "Environment": "Development"
+  },
+  "spark_env_vars": {
+    "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+  },
+  "enable_local_disk_encryption": false,
+  "runtime_engine": "STANDARD",
+  "cluster_log_conf": {
+    "dbfs": {
+      "destination": "dbfs:/cluster-logs"
+    }
+  },
+  "ssh_public_keys": [],
+  "single_user_name": "user@example.com",
+  "data_security_mode": "SINGLE_USER",
+  "instance_pool_id": "0123-456789-pool-abcde",
+  "policy_id": "0123-456789-policy-abcde",
+  "pinned_by_user_name": "admin@example.com",
+  "cluster_creator": "admin@example.com",
+  "idempotency_token": "example-token-12345"
+}

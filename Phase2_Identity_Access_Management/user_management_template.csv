@@ -1,0 +1,7 @@
+email,firstName,lastName,role,groups,workspaceAccess
+john.doe@example.com,John,Doe,ACCOUNT_ADMIN,"admins,data_engineers",ALL_WORKSPACES
+jane.smith@example.com,Jane,Smith,WORKSPACE_ADMIN,"data_scientists,project_alpha",WORKSPACE_1;WORKSPACE_2
+bob.johnson@example.com,Bob,Johnson,WORKSPACE_USER,"data_analysts,project_beta",WORKSPACE_1
+alice.williams@example.com,Alice,Williams,WORKSPACE_USER,"data_scientists,project_alpha",WORKSPACE_2
+charlie.brown@example.com,Charlie,Brown,WORKSPACE_USER,"data_engineers,project_gamma",WORKSPACE_3
+diana.miller@example.com,Diana,Miller,ACCOUNT_USER,"data_analysts,project_beta",NO_WORKSPACE_ACCESS

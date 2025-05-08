@@ -1,0 +1,45 @@
+{
+  "instance_pool_name": "Standard-Compute-Pool",
+  "min_idle_instances": 2,
+  "max_capacity": 20,
+  "idle_instance_autotermination_minutes": 30,
+  "node_type_id": "i3.xlarge",
+  "custom_tags": {
+    "Department": "Engineering",
+    "Environment": "Production",
+    "ResourceType": "InstancePool"
+  },
+  "enable_elastic_disk": true,
+  "disk_spec": {
+    "disk_count": 1,
+    "disk_size": 100,
+    "disk_type": {
+      "ebs_volume_type": "GENERAL_PURPOSE_SSD"
+    }
+  },
+  "preloaded_spark_versions": [
+    "11.3.x-scala2.12",
+    "11.3.x-photon-scala2.12"
+  ],
+  "aws_attributes": {
+    "availability": "SPOT_WITH_FALLBACK",
+    "spot_bid_price_percent": 100,
+    "zone_id": "us-west-2a"
+  },
+  "instance_pool_fleet": [
+    {
+      "instance_type": "i3.xlarge",
+      "target_share": 70
+    },
+    {
+      "instance_type": "r5.xlarge",
+      "target_share": 30
+    }
+  ],
+  "instance_pool_id": null,
+  "default_tags": {
+    "Vendor": "Databricks",
+    "Creator": "admin@example.com",
+    "ClusterManager": "Databricks"
+  }
+}

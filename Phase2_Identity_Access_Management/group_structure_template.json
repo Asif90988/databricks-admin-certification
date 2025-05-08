@@ -1,0 +1,137 @@
+{
+  "groups": [
+    {
+      "displayName": "admins",
+      "description": "Account administrators with full access to all resources",
+      "members": [
+        "john.doe@example.com"
+      ],
+      "roles": [
+        "ACCOUNT_ADMIN"
+      ],
+      "workspaceAccess": "ALL_WORKSPACES",
+      "entitlements": [
+        "allow-cluster-create",
+        "allow-instance-pool-create",
+        "workspace-access"
+      ]
+    },
+    {
+      "displayName": "data_engineers",
+      "description": "Data engineering team responsible for ETL processes",
+      "members": [
+        "john.doe@example.com",
+        "charlie.brown@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_ADMIN"
+      ],
+      "workspaceAccess": "ALL_WORKSPACES",
+      "entitlements": [
+        "allow-cluster-create",
+        "allow-instance-pool-create",
+        "workspace-access"
+      ],
+      "subgroups": [
+        {
+          "displayName": "etl_developers",
+          "description": "Engineers focused on ETL development",
+          "members": [
+            "charlie.brown@example.com"
+          ],
+          "roles": [
+            "WORKSPACE_USER"
+          ],
+          "workspaceAccess": "WORKSPACE_1;WORKSPACE_3",
+          "entitlements": [
+            "allow-cluster-create",
+            "workspace-access"
+          ]
+        }
+      ]
+    },
+    {
+      "displayName": "data_scientists",
+      "description": "Data science team responsible for model development",
+      "members": [
+        "jane.smith@example.com",
+        "alice.williams@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_USER"
+      ],
+      "workspaceAccess": "WORKSPACE_1;WORKSPACE_2",
+      "entitlements": [
+        "allow-cluster-create",
+        "workspace-access"
+      ]
+    },
+    {
+      "displayName": "data_analysts",
+      "description": "Data analysts responsible for reporting and dashboards",
+      "members": [
+        "bob.johnson@example.com",
+        "diana.miller@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_USER"
+      ],
+      "workspaceAccess": "WORKSPACE_1",
+      "entitlements": [
+        "workspace-access"
+      ]
+    },
+    {
+      "displayName": "project_alpha",
+      "description": "Team members working on Project Alpha",
+      "members": [
+        "jane.smith@example.com",
+        "alice.williams@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_USER"
+      ],
+      "workspaceAccess": "WORKSPACE_2",
+      "entitlements": [
+        "workspace-access"
+      ]
+    },
+    {
+      "displayName": "project_beta",
+      "description": "Team members working on Project Beta",
+      "members": [
+        "bob.johnson@example.com",
+        "diana.miller@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_USER"
+      ],
+      "workspaceAccess": "WORKSPACE_1",
+      "entitlements": [
+        "workspace-access"
+      ]
+    },
+    {
+      "displayName": "project_gamma",
+      "description": "Team members working on Project Gamma",
+      "members": [
+        "charlie.brown@example.com"
+      ],
+      "roles": [
+        "WORKSPACE_USER"
+      ],
+      "workspaceAccess": "WORKSPACE_3",
+      "entitlements": [
+        "workspace-access"
+      ]
+    }
+  ],
+  "notes": [
+    "This template demonstrates a typical group structure with both functional teams and project-based groups",
+    "Users can be members of multiple groups",
+    "Groups can have different roles and entitlements",
+    "Subgroups inherit permissions from parent groups but can have additional restrictions",
+    "Workspace access can be limited to specific workspaces or granted to all workspaces",
+    "Entitlements control specific actions users can perform within workspaces"
+  ]
+}

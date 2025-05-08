@@ -1,0 +1,89 @@
+{
+  "VPC": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsSupport": true,
+    "EnableDnsHostnames": true,
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "databricks-vpc"
+      }
+    ]
+  },
+  "Subnets": [
+    {
+      "CidrBlock": "10.0.1.0/24",
+      "AvailabilityZone": "us-west-2a",
+      "MapPublicIpOnLaunch": true,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-subnet-public-1"
+        }
+      ]
+    },
+    {
+      "CidrBlock": "10.0.2.0/24",
+      "AvailabilityZone": "us-west-2b",
+      "MapPublicIpOnLaunch": true,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-subnet-public-2"
+        }
+      ]
+    },
+    {
+      "CidrBlock": "10.0.3.0/24",
+      "AvailabilityZone": "us-west-2a",
+      "MapPublicIpOnLaunch": false,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-subnet-private-1"
+        }
+      ]
+    },
+    {
+      "CidrBlock": "10.0.4.0/24",
+      "AvailabilityZone": "us-west-2b",
+      "MapPublicIpOnLaunch": false,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-subnet-private-2"
+        }
+      ]
+    }
+  ],
+  "RouteTable": {
+    "Routes": [
+      {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": "igw-xxxxxxxx"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "databricks-route-table"
+      }
+    ]
+  },
+  "InternetGateway": {
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "databricks-igw"
+      }
+    ]
+  },
+  "NatGateway": {
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "databricks-nat"
+      }
+    ]
+  }
+}

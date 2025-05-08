@@ -1,0 +1,135 @@
+{
+  "name": "Development Team Policy",
+  "description": "Cluster policy for development teams with cost controls and standardized configurations",
+  "definition": {
+    "spark_version": {
+      "type": "fixed",
+      "value": "11.3.x-scala2.12",
+      "hidden": false
+    },
+    "node_type_id": {
+      "type": "allowlist",
+      "values": ["i3.xlarge", "i3.2xlarge", "r5.xlarge", "r5.2xlarge"],
+      "defaultValue": "i3.xlarge",
+      "hidden": false
+    },
+    "driver_node_type_id": {
+      "type": "allowlist",
+      "values": ["i3.xlarge", "i3.2xlarge", "r5.xlarge", "r5.2xlarge"],
+      "defaultValue": "i3.xlarge",
+      "hidden": false
+    },
+    "autotermination_minutes": {
+      "type": "fixed",
+      "value": 120,
+      "hidden": false
+    },
+    "spark_conf.spark.databricks.cluster.profile": {
+      "type": "allowlist",
+      "values": ["singleNode", "serverless", "standard"],
+      "defaultValue": "standard",
+      "hidden": false
+    },
+    "num_workers": {
+      "type": "range",
+      "minValue": 1,
+      "maxValue": 10,
+      "defaultValue": 2,
+      "hidden": false
+    },
+    "autoscale.min_workers": {
+      "type": "range",
+      "minValue": 1,
+      "maxValue": 5,
+      "defaultValue": 1,
+      "hidden": false
+    },
+    "autoscale.max_workers": {
+      "type": "range",
+      "minValue": 2,
+      "maxValue": 10,
+      "defaultValue": 4,
+      "hidden": false
+    },
+    "aws_attributes.availability": {
+      "type": "fixed",
+      "value": "SPOT_WITH_FALLBACK",
+      "hidden": false
+    },
+    "aws_attributes.spot_bid_price_percent": {
+      "type": "fixed",
+      "value": 100,
+      "hidden": true
+    },
+    "aws_attributes.ebs_volume_type": {
+      "type": "fixed",
+      "value": "GENERAL_PURPOSE_SSD",
+      "hidden": true
+    },
+    "aws_attributes.ebs_volume_count": {
+      "type": "fixed",
+      "value": 1,
+      "hidden": true
+    },
+    "aws_attributes.ebs_volume_size": {
+      "type": "range",
+      "minValue": 50,
+      "maxValue": 200,
+      "defaultValue": 100,
+      "hidden": false
+    },
+    "aws_attributes.first_on_demand": {
+      "type": "fixed",
+      "value": 1,
+      "hidden": true
+    },
+    "aws_attributes.zone_id": {
+      "type": "allowlist",
+      "values": ["us-west-2a", "us-west-2b", "us-west-2c"],
+      "defaultValue": "us-west-2a",
+      "hidden": false
+    },
+    "custom_tags.Department": {
+      "type": "fixed",
+      "value": "Engineering",
+      "hidden": false
+    },
+    "custom_tags.Environment": {
+      "type": "allowlist",
+      "values": ["Development", "Testing", "Staging"],
+      "defaultValue": "Development",
+      "hidden": false
+    },
+    "custom_tags.Project": {
+      "type": "unlimited",
+      "defaultValue": "",
+      "hidden": false
+    },
+    "spark_env_vars.PYSPARK_PYTHON": {
+      "type": "fixed",
+      "value": "/databricks/python3/bin/python3",
+      "hidden": true
+    },
+    "enable_elastic_disk": {
+      "type": "fixed",
+      "value": true,
+      "hidden": true
+    },
+    "enable_local_disk_encryption": {
+      "type": "fixed",
+      "value": false,
+      "hidden": true
+    },
+    "data_security_mode": {
+      "type": "allowlist",
+      "values": ["NONE", "SINGLE_USER", "USER_ISOLATION"],
+      "defaultValue": "SINGLE_USER",
+      "hidden": false
+    },
+    "runtime_engine": {
+      "type": "fixed",
+      "value": "STANDARD",
+      "hidden": true
+    }
+  }
+}

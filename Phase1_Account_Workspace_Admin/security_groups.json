@@ -1,0 +1,95 @@
+{
+  "SecurityGroups": [
+    {
+      "GroupName": "databricks-sg-workspace",
+      "Description": "Security group for Databricks workspace",
+      "VpcId": "vpc-xxxxxxxx",
+      "InboundRules": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 443,
+          "ToPort": 443,
+          "CidrIp": "0.0.0.0/0",
+          "Description": "HTTPS access from anywhere"
+        }
+      ],
+      "OutboundRules": [
+        {
+          "IpProtocol": "-1",
+          "FromPort": -1,
+          "ToPort": -1,
+          "CidrIp": "0.0.0.0/0",
+          "Description": "All outbound traffic"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-sg-workspace"
+        }
+      ]
+    },
+    {
+      "GroupName": "databricks-sg-worker",
+      "Description": "Security group for Databricks worker nodes",
+      "VpcId": "vpc-xxxxxxxx",
+      "InboundRules": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 0,
+          "ToPort": 65535,
+          "SourceSecurityGroupId": "sg-xxxxxxxx",
+          "Description": "All TCP traffic from workspace security group"
+        },
+        {
+          "IpProtocol": "udp",
+          "FromPort": 0,
+          "ToPort": 65535,
+          "SourceSecurityGroupId": "sg-xxxxxxxx",
+          "Description": "All UDP traffic from workspace security group"
+        }
+      ],
+      "OutboundRules": [
+        {
+          "IpProtocol": "-1",
+          "FromPort": -1,
+          "ToPort": -1,
+          "CidrIp": "0.0.0.0/0",
+          "Description": "All outbound traffic"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "databricks-sg-worker"
+        }
+      ]
+    }
+  ],
+  "SecurityGroupRules": [
+    {
+      "Type": "ingress",
+      "Description": "Self-referencing rule for worker nodes",
+      "FromPort": 0,
+      "ToPort": 65535,
+      "Protocol": "tcp",
+      "SourceSecurityGroupId": "sg-xxxxxxxx",
+      "SecurityGroupId": "sg-xxxxxxxx"
+    },
+    {
+      "Type": "ingress",
+      "Description": "Self-referencing rule for worker nodes",
+      "FromPort": 0,
+      "ToPort": 65535,
+      "Protocol": "udp",
+      "SourceSecurityGroupId": "sg-xxxxxxxx",
+      "SecurityGroupId": "sg-xxxxxxxx"
+    }
+  ],
+  "Notes": [
+    "Replace vpc-xxxxxxxx with your actual VPC ID",
+    "Replace sg-xxxxxxxx with the actual security group IDs after creation",
+    "For production environments, consider restricting the HTTPS access to specific IP ranges",
+    "The worker security group needs self-referencing rules for cluster communication"
+  ]
+}
